@@ -1,5 +1,18 @@
 <script setup>
+import { ref } from "vue";
+
 import IconArrowDown from "@/components/icons/IconArrowDown.vue";
+import IconGithub from "@/components/icons/IconGithub.vue";
+import IconLinkedin from "@/components/icons/IconLinkedin.vue";
+import IconMedium from "@/components/icons/IconMedium.vue";
+import IconTelegram from "@/components/icons/IconTelegram.vue";
+
+const socialMediaItems = ref([
+  { id: 0, component: IconGithub, link: "https://github.com/vickyadrii" },
+  { id: 1, component: IconLinkedin, link: "https://linkedin.com/in/vickyadrii" },
+  { id: 2, component: IconMedium, link: "https://medium.com/@vickyadri29" },
+  { id: 3, component: IconTelegram, link: "https://t.me/vickyadrii" },
+]);
 </script>
 
 <template>
@@ -9,10 +22,9 @@ import IconArrowDown from "@/components/icons/IconArrowDown.vue";
       <IconArrowDown />
     </button>
     <ul class="hero__social-media">
-      <li>Github</li>
-      <li>Linkedin</li>
-      <li>Medium</li>
-      <li>Telegram</li>
+      <li v-for="{ id, component, link } in socialMediaItems" :key="id">
+        <a :href="link"><component :is="component" /></a>
+      </li>
     </ul>
   </div>
 </template>
@@ -46,6 +58,7 @@ import IconArrowDown from "@/components/icons/IconArrowDown.vue";
   display: flex;
   gap: 16px;
   font-size: 14px;
+  padding: 0;
 }
 
 .hero__social-media li {
