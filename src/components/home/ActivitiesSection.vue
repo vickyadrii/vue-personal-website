@@ -44,7 +44,7 @@ const workItems = ref([
 </script>
 
 <template>
-  <div class="activities">
+  <div id="activities" class="activities">
     <TitleSection
       title="Activities"
       description="Lorem ipsum dolor sit amet consectetur. Phasellus eros ante vitae et. Tortor in sed ut ipsum proin amet nisl dictum. Sit auctor sem eget lorem lectus amet nunc. Mauris aliquam amet enim "

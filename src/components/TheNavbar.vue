@@ -2,7 +2,7 @@
   <header>
     <nav>
       <ul>
-        <li v-for="{ id, link, name } in navItems" :key="id">
+        <li v-for="{ id, link, name } in navItems" :key="id" :class="{ active: isActive(link) }">
           <router-link :to="link">{{ name }}</router-link>
         </li>
       </ul>
@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import { useRoute } from 'vue-router';
+
 export default {
   data() {
     return {
@@ -23,10 +25,23 @@ export default {
       ],
     };
   },
+  setup() {
+    const route = useRoute();
+    const isActive = (link) => {
+      return route.hash === link;
+    };
+    return { isActive };
+  },
 };
 </script>
+
 <style scoped>
 header {
+  position: sticky;
+  top: 0;
+}
+
+nav {
   display: flex;
   justify-content: center;
   padding: 20px;
@@ -37,7 +52,9 @@ nav ul {
   display: flex;
   align-items: center;
   gap: 32px;
-  background: #202020;
+  background: #202020CC;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
   border: 1px solid #4d4d4d;
   border-radius: 24px;
 }
@@ -51,5 +68,27 @@ ul li {
 a {
   color: #ffffff;
   text-decoration: none;
+  position: relative;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  display: block;
+  margin: auto;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  transition: width 0.3s;
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+.active a::after {
+  width: 100%;
 }
 </style>

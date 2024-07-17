@@ -1,5 +1,5 @@
 <script setup>
-import HeroContact from "./HeroContact.vue";
+import HeroContacts from "./HeroContacts.vue";
 </script>
 
 <template>
@@ -12,7 +12,7 @@ import HeroContact from "./HeroContact.vue";
         temporibus laborum animi dolorum iusto placeat deserunt nisi deleniti molestiae cumque, accusamus ullam
         quisquam.
       </p>
-      <HeroContact />
+      <HeroContacts />
     </div>
   </div>
 </template>
